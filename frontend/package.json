@@ -1,0 +1,46 @@
+{
+  "name": "amref-shop",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@xeader/blendid-plus": "github:xeader/blendid-plus",
+    "@xeader/itcss": "github:xeader/itcss"
+  },
+  "scripts": {
+    "build": "yarn blendid -- build",
+    "npm-build": "blendid build",
+    "server": "php -S localhost:8180 -t public",
+    "serve": "yarn build; open 'http://localhost:8180'; yarn server",
+    "watch": "yarn blendid",
+    "wordpress": "yarn && yarn blendid -- wordpress;yarn blendid -- wordpress-assets;yarn blendid -- clean",
+    "npm-wordpress-build": "npm i && blendid -- wordpress;blendid -- wordpress-assets; blendid -- clean",
+    "npm-wordpress-build-dev": "blendid -- wordpress;blendid -- wordpress-assets; blendid -- clean",
+    "wordpress-hot": "yarn && yarn blendid -- wordpress-hot;",
+    "npm-wordpress-build-hot": "npm i && blendid -- wordpress-hot;",
+    "npm-wordpress-build-hot-dev": "blendid -- wordpress-hot;",
+    "blendid": "blendid"
+  },
+  "author": {
+    "name": "Antonio Gatta",
+    "email": "a.gatta@xeader.com",
+    "url": "https://xeader.com"
+  },
+  "private": true,
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.7.1",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-loader": "^3.0.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-vue": "^6.1.2",
+    "gulp-real-favicon": "^0.3.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.19.1"
+  },
+  "engines": {
+    "node": "^10.13",
+    "npm": "6.9",
+    "yarn": ">=1.16"
+  }
+}

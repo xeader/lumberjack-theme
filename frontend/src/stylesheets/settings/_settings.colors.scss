@@ -1,0 +1,155 @@
+// Named colors
+$black-color: #000;
+$black: $black-color;
+$black-0: $black-color;
+$black-1: #1f1f1f;
+
+$white-color: #fff;
+$white: $white-color;
+$white-0: $white-color;
+
+$grey0: #333333;
+$grey-1: #f9f9f9;
+$grey-2: #ededed;
+$grey-3: #e0e0e0;
+$grey-4: #d2d2d2;
+$grey-5: #c3c3c3;
+$grey-6: #b2b2b2;
+$grey-7: #9f9f9f;
+$grey-8: #888;
+$grey-9: #6c6c6c;
+$grey-10: #3f3f3f;
+
+// Primary Colors
+$crimson-color: #d21034;
+
+$primary-color: $crimson-color;
+$prm-1: #a80c29;
+$prm-2: $primary-color;
+$prm-3: #e88799;
+$prm-4-1: #edc4bf;
+$prm-4-2: #f3e5e1;
+$prm-5: #f5eae2;
+$prm-6: #f9f2ef;
+
+$secondary-color: #d26699;
+$secondary-color-1: #d26699;
+$snd-1-0: #d26699;
+$snd-1-1: #de8fb4;
+$snd-1-2: #eab7cf;
+$snd-1-3: #f7e4ed;
+$snd-1-4: #fcf6f9;
+
+$secondary-color-2: #297da4;
+$snd-2-0: #297da4;
+$snd-2-1: #5db0d7;
+$snd-2-2: #afd8eb;
+$snd-2-3: #e1f0f8;
+$snd-2-4: #f5fafd;
+
+$secondary-color-3: #daae12;
+$snd-3-0: #daae12;
+$snd-3-1: #eec32d;
+$snd-3-2: #f5dc84;
+$snd-3-3: #faeec2;
+$snd-3-4: #faf6ec;
+
+$secondary-color-4: #5c8146;
+$snd-4-0: #5c8146;
+$snd-4-1: #8eb576;
+$snd-4-2: #becdac;
+$snd-4-3: #e1ebdb;
+$snd-4-4: #f0f5ed;
+
+$contrast-color: inherit;
+
+// Alert colors
+$info-color: #1480e3;
+$success-color: #28a745;
+$warning-color: #efb206;
+$danger-color: #dc3545;
+$default-red-alert-color: $crimson-color;
+
+// Context colors
+$body-background: $white-color;
+$body-outer-background: #f1f1f1;
+
+// Typography colors
+$text-color: #000;
+$body-font-color: $text-color;
+$heading-font-color: inherit;
+
+$grey-colors: (
+  "grey-1": $grey-1,
+  "grey-2": $grey-2,
+  "grey-3": $grey-3,
+  "grey-4": $grey-4,
+  "grey-5": $grey-5,
+  "grey-6": $grey-6,
+  "grey-7": $grey-7,
+  "grey-8": $grey-8,
+  "grey-9": $grey-9,
+  "grey-10": $grey-10
+);
+$primary-colors: (
+  "prm-1": $prm-1,
+  "prm-2": $prm-2,
+  "prm-3": $prm-3,
+  "prm-4-1": $prm-4-1,
+  "prm-4-2": $prm-4-2,
+  "prm-5": $prm-5,
+  "prm-6": $prm-6
+);
+$snd-1-colors: (
+  "snd-1-0": $snd-1-0,
+  "snd-1-1": $snd-1-1,
+  "snd-1-2": $snd-1-2,
+  "snd-1-3": $snd-1-3,
+  "snd-1-4": $snd-1-4
+);
+$snd-2-colors: (
+  "snd-2-0": $snd-2-0,
+  "snd-2-1": $snd-2-1,
+  "snd-2-2": $snd-2-2,
+  "snd-2-3": $snd-2-3,
+  "snd-2-4": $snd-1-4
+);
+$snd-3-colors: (
+  "snd-3-0": $snd-3-0,
+  "snd-3-1": $snd-3-1,
+  "snd-3-2": $snd-3-2,
+  "snd-3-3": $snd-3-3,
+  "snd-3-4": $snd-1-4
+);
+$snd-4-colors: (
+  "snd-4-0": $snd-4-0,
+  "snd-4-1": $snd-4-1,
+  "snd-4-2": $snd-4-2,
+  "snd-4-3": $snd-4-3,
+  "snd-4-4": $snd-1-4
+);
+
+$secondary-colors: map_merge(
+  $snd-1-colors,
+  map_merge($snd-2-colors, map_merge($snd-3-colors, $snd-4-colors))
+);
+
+$alert-colors: (
+  "info": $info-color,
+  "success": $success-color,
+  "warning": $warning-color,
+  "danger": $danger-color
+);
+
+$colors: map_merge(
+  (
+    "current": currentColor,
+    "transparent": transparent,
+    "white": $white-0,
+    "black": $black-0
+  ),
+  map_merge(
+    $grey-colors,
+    map_merge($primary-colors, map_merge($secondary-colors, $alert-colors))
+  )
+);

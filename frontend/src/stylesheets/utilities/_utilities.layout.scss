@@ -1,0 +1,148 @@
+.container {
+  // overflow: hidden; // do not enable: sticky elements will not scroll anymore
+  @include breakpoint(medium down) {
+    overflow-x: hidden; // if enabled for large breakpoint sticky elements do not scroll
+  }
+}
+
+.visually-hidden {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.screen-reader-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+.flex-row {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+:root {
+  --background-color: #{$body-background};
+}
+
+body {
+  @include breakpoint(large up) {
+    background-color: $body-outer-background;
+  }
+}
+
+.main,
+.pre-main,
+#header {
+  background-color: var(--background-color);
+}
+
+.main {
+  display: flex;
+  flex-grow: 1;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.flex {
+  display: flex;
+}
+.block {
+  display: block;
+}
+.items-stretch {
+  align-items: stretch;
+}
+.items-start {
+  align-items: flex-start;
+}
+.items-center {
+  align-items: center;
+}
+.items-end {
+  align-items: flex-end;
+}
+.items-baseline {
+  align-items: baseline;
+}
+.content-start {
+  align-content: flex-start;
+}
+.content-center {
+  align-content: center;
+}
+.content-end {
+  align-content: flex-end;
+}
+.content-between {
+  align-content: space-between;
+}
+.content-around {
+  align-content: space-around;
+}
+.self-auto {
+  align-self: auto;
+}
+.self-start {
+  align-self: flex-start;
+}
+.self-center {
+  align-self: center;
+}
+.self-end {
+  align-self: flex-end;
+}
+.self-stretch {
+  align-self: stretch;
+}
+.justify-start {
+  justify-content: flex-start;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-around {
+  justify-content: space-around;
+}
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.wrap {
+  white-space: normal;
+}
+.nowrap {
+  white-space: nowrap;
+}
+
+picture {
+  display: block;
+}

@@ -1,0 +1,111 @@
+.text-condensed {
+  @include text-condensed;
+}
+
+.text-expanded {
+  @include text-expanded;
+}
+
+a {
+  text-decoration: none;
+}
+
+.paragraph,
+p {
+  @include paragraph;
+}
+
+@each $size in $breakpoint-classes-map {
+  @include breakpoint($size) {
+    @each $suffix, $font-size, $line-height in $paragraphs {
+      .#{size-prefix($size)}caption-#{$suffix},
+      .#{size-prefix($size)}paragraph-#{$suffix},
+      p.#{size-prefix($size)}#{$suffix} {
+        @include paragraph($suffix);
+      }
+    }
+  }
+}
+
+.alt-title {
+  @include alt-title;
+}
+
+@each $size in $breakpoint-classes-map {
+  @include breakpoint($size) {
+    @each $suffix, $font-size in $altTitles {
+      .#{size-prefix($size)}alt-title-#{$suffix} {
+        @include alt-title($suffix);
+      }
+    }
+  }
+}
+
+.title {
+  @include title;
+}
+
+@each $size in $breakpoint-classes-map {
+  @include breakpoint($size) {
+    @each $suffix, $font-size in $titles {
+      .#{size-prefix($size)}title-#{$suffix} {
+        @include title($suffix);
+      }
+    }
+  }
+}
+
+
+.subtitle {
+  @include subtitle;
+}
+
+@each $size in $breakpoint-classes-map {
+  @include breakpoint($size) {
+    @each $suffix, $subtitle in $subTitles {
+      .#{size-prefix($size)}subtitle-#{$suffix} {
+        @include subtitle($suffix);
+      }
+    }
+  }
+}
+
+.navigation {
+  @include navigation;
+
+  &--active,
+  &--act,
+  &.-active {
+    @include navigation(default, true);
+  }
+}
+@each $size in $breakpoint-classes-map {
+  @include breakpoint($size) {
+    @each $suffix, $navigation in $navigations {
+      .#{size-prefix($size)}navigation-#{$suffix} {
+        @include navigation($suffix);
+      }
+
+      @if ($suffix == "lg-cond") {
+        &.navigation--active,
+        &.navigation--act,
+        &.-active {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+.btn-text {
+  @include btn-text;
+}
+@each $size in $breakpoint-classes-map {
+  @include breakpoint($size) {
+    @each $suffix, $font-size, $line-height in $buttonTexts {
+      .#{size-prefix($size)}btn-text-#{$suffix} {
+        @include btn-text($suffix);
+      }
+    }
+  }
+}

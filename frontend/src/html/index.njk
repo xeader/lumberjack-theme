@@ -1,0 +1,122 @@
+{% set package = __project.PACKAGE %}
+{% set accentHue = 196 %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{ package.name }}</title>
+  <link rel="stylesheet" href="https://www.xeader.com/cdn/blendid-plus_v1/assets/css/index.css">
+</head>
+<body style="--hue: {{ accentHue | default(20) }}">
+<div class="stage">
+  <div class="stage__project">
+    <code>{{ package.name }}</code>
+  </div>
+  <img class="stage__logo" height="64" src="images/logo.svg" alt="{{ package.name }}">
+  <h1 class="stage__description">{{ package.description }}</h1>
+  {% if package.homepage %}
+    <p class="stage__homepage">
+      <a href="{{ package.homepage }}" title="{{ package.homepage }}">
+        <svg width="16px" height="16px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <g id="--↳-Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+             stroke-linecap="round" stroke-linejoin="round">
+            <g id="24/prm/link" transform="translate(-1.000000, -1.000000)" stroke="currentColor"
+               stroke-width="2">
+              <path
+                d="M9.99999999,13 C10.8689555,14.1616929 12.1996273,14.8887004 13.6466499,14.9923334 C15.0936724,15.0959663 16.5143658,14.5660061 17.54,13.54 L20.54,10.54 C22.4348611,8.57810555 22.4077619,5.45957609 20.4790929,3.53090709 C18.5504239,1.60223809 15.4318944,1.57513891 13.47,3.46999996 L11.75,5.17999997 M14,11 C13.1310445,9.83830707 11.8003727,9.11129956 10.3533501,9.00766665 C8.90632756,8.90403373 7.48563418,9.43399386 6.45999998,10.46 L3.45999996,13.46 C1.56513891,15.4218944 1.59223809,18.5404239 3.52090709,20.4690929 C5.44957609,22.3977619 8.56810555,22.4248611 10.53,20.53 L12.24,18.82"
+                id="Shape"></path>
+            </g>
+          </g>
+        </svg>
+        {{ package.homepage }}
+      </a>
+    </p>
+  {% endif %}
+  <hr>
+  <section class="stage__nav">
+    <strong class="stage__nav__title">Details</strong>
+    <h3>Get started</h3>
+    <p>
+      Requires
+      <a href="https://yarnpkg.com/" target="_blank">Yarn</a>
+      or <a href="https://www.npmjs.com/" target="_blank">Npm</a>
+    </p>
+    <pre><code>yarn <span># or npm -i</span></code></pre>
+    <h3>Scripts</h3>
+    {% for name, command in package.scripts %}
+      <strong>{{ name | capitalize }} project</strong>
+      <pre><code>yarn <strong>{{ name }}</strong> <span># {{ command }}</span></code></pre>
+    {% endfor %}
+  </section>
+  {% set pages = __project.TREE | sort(false, false, 'name') %}
+  {% if pages.length > 1 %}
+    <hr>
+    <nav class="stage__nav">
+      <strong class="stage__nav__title">Pages</strong>
+
+      <ol class="stage__menu">
+        {% for group, pages in pages | groupby("group") %}
+          <li>
+            {{ "Pages" if group === '' else group }}
+            {% if pages %}
+              <ol>
+                {% for item in pages %}
+                  {% if item.name !== 'index' %}
+                    <li><a href="/{{ item.html }}">{{ item.name | deslug | replace('-', ' ')  | title }}</a></li>
+                  {% endif %}
+                {% endfor %}
+              </ol>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ol>
+    </nav>
+  {% endif %}
+  <hr>
+  <code class="footer">
+    v.{{ package.version }}
+
+    {% if package.author %}
+      by
+      {% if package.author.email %}
+        <img src="https://www.gravatar.com/avatar/{{ package.author.email | md5 }}?s=64"
+             alt="{{ package.author.name }}">
+      {% endif %}
+      {% if package.author.name %}
+        {% if package.author.email %}<a href="mailto:{{ package.author.email }}">{% endif -%}
+        {{- package.author.name -}}
+        {%- if package.author.email -%}</a>{% endif %}
+      {% else %}
+        {{ package.author }}
+      {% endif %}
+    {% endif %}
+
+    {% if package.license %}
+      Licence:
+      <a href="https://spdx.org/licenses/{{ package.license }}.html" target="_blank">
+        {{ package.license }}
+      </a>
+    {% endif %}
+
+    {% if package.private === true %}
+      <div class="stage__private">
+        <svg viewBox="0 0 20 22">
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+             stroke-linejoin="round">
+            <g transform="translate(-2.000000, -1.000000)" stroke="currentColor" stroke-width="3">
+              <path
+                d="M4.99999996,11 L19,11 C20.1045695,11 21,11.8954305 21,13 L21,20 C21,21.1045695 20.1045695,22 19,22 L4.99999996,22 C3.89543046,22 2.99999996,21.1045695 2.99999996,20 L2.99999996,13 C2.99999996,11.8954305 3.89543046,11 4.99999996,11 Z M6.99999998,11 L6.99999998,6.99999996 C6.99999998,4.23857622 9.23857624,1.99999996 12,1.99999996 C14.7614238,1.99999996 17,4.23857622 17,6.99999996 L17,11"
+                id="Shape"></path>
+            </g>
+          </g>
+        </svg>
+        <p>This is a <strong>private</strong> project</p>
+      </div>
+    {% endif %}
+  </code>
+</div>
+</body>
+</html>

@@ -1,0 +1,179 @@
+/// text-button
+/// {class-prefix: font-size line-height}
+$buttonTexts: (
+  "lg": 28 32,
+  "md": 20 28,
+  "sm": 16 24,
+  "xs": 12 16
+);
+
+@mixin btn-text($suffix: default) {
+  @if (map_has_key($buttonTexts, $suffix)) {
+    $buttonText: map_get($buttonTexts, $suffix);
+    font-size: rem-calc(nth($buttonText, 1));
+    line-height: rem-calc(nth($buttonText, 2));
+    svg {
+      width: rem-calc(nth($buttonText, 2));
+      height: rem-calc(nth($buttonText, 2));
+    }
+    > svg {
+      &:first-child {
+        margin-right: rem-calc(nth($buttonText, 2) / 2);
+      }
+      &:last-child {
+        margin-left: rem-calc(nth($buttonText, 2) / 2);
+      }
+      &:first-child {
+        &:last-child {
+          margin-right: unset;
+          margin-left: unset;
+        }
+      }
+    }
+    > .sprite {
+      display: flex;
+      align-items: center;
+
+      &:first-child svg {
+        margin-right: rem-calc(nth($buttonText, 2) / 2);
+      }
+      &:last-child svg {
+        margin-left: rem-calc(nth($buttonText, 2) / 2);
+      }
+      &:first-child {
+        &:last-child svg {
+          margin-right: unset;
+          margin-left: unset;
+        }
+      }
+    }
+  } @else {
+    font-family: inherit;
+    font-weight: 500;
+    font-stretch: normal;
+    letter-spacing: 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+
+@mixin btn($suffix: none) {
+  @if (map_has_key($buttonTexts, $suffix)) {
+    $button: map_get($buttonTexts, $suffix);
+    padding: rem-calc(nth($button, 1)) rem-calc(nth($button, 2));
+  } @else {
+    @include reset-appearance;
+    background-color: $primary-color;
+    padding: 10px;
+    color: $white-color;
+    outline: none;
+    will-change: background;
+    transition: $easeTransition;
+    @include btn-text;
+    user-select: none;
+
+    &:hover,
+    &:focus {
+      background-color: $prm-3;
+      color: $white-color;
+      text-decoration: none;
+    }
+
+    &:active {
+      background-color: $prm-1;
+      transition-duration: 0.15s;
+    }
+
+    &[disabled] {
+      opacity: 0.16;
+      pointer-events: none;
+    }
+  }
+}
+
+@mixin btn--success {
+  background-color: $success-color;
+
+  &:hover,
+  &:focus {
+    background-color: mix($success-color, $white-color, 90%);
+  }
+
+  &:active {
+    background-color: mix($success-color, $black-color, 90%);
+  }
+}
+
+
+@mixin text-button {
+  @include btn-text;
+  svg {
+    color: $prm-2;
+  }
+
+  &:hover,
+  &:focus {
+    color: $prm-2;
+  }
+
+  &:active {
+    color: $prm-1;
+    transition-duration: 0.15s;
+  }
+
+  &[disabled] {
+    opacity: 0.16;
+    pointer-events: none;
+  }
+}
+
+
+// link
+$links: (
+  "lg": 28 32 8,
+  "md": 20 28 8,
+  "sm": 16 24 4,
+  "xs": 12 16 4
+);
+
+@mixin link($suffix: default) {
+  @if (map_has_key($links, $suffix)) {
+    $link: map_get($links, $suffix);
+    font-size: rem-calc(nth($link, 1));
+    line-height: rem-calc(nth($link, 2));
+
+    &:after {
+      bottom: #{nth($link, 3) * -1px};
+    }
+  } @else {
+    letter-spacing: 0;
+    font-stretch: normal;
+    position: relative;
+    display: inline-flex;
+
+    &:after {
+      @include abstract-absolute();
+      height: 1px;
+      width: 100%;
+      background-color: currentColor;
+      pointer-events: none;
+    }
+
+    &:hover,
+    &:focus {
+      color: $prm-2;
+    }
+
+    &:active {
+      color: $prm-1;
+      transition-duration: 0.15s;
+    }
+
+    &[disabled] {
+      opacity: 0.16;
+      pointer-events: none;
+    }
+  }
+}

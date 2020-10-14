@@ -1,0 +1,62 @@
+@import "@xeader/itcss/tools/tools.functions";
+
+$global-width: rem-calc(1680);
+$max-full-width: rem-calc(1920);
+
+$grid-name: "grid";
+$grid-container-name: "container";
+
+/// The maximum width of a row.
+/// @type Number
+$grid-row-width: $global-width;
+
+/// The default column count of a grid. Changing this value affects the logic of the grid mixins, and the number of CSS classes output.
+/// @type Map | Length
+$grid-column-count: (
+  small: 6,
+  large: 12
+);
+
+/// The amount of space between columns at different screen sizes. To use just one size, set the variable to a number instead of a map.
+/// @type Map | Length
+$grid-column-gutter: (
+  small: rem-calc(24),
+  large: rem-calc(32)
+);
+
+$grid-outer-margin: (
+  small: rem-calc(20),
+  medium: rem-calc(20),
+  large: rem-calc(20),
+  xlarge: rem-calc(72)
+);
+
+$header-height: rem-calc(76);
+$extended-header-height: rem-calc(139);
+$extended-header-breakpoint-up: xlarge up;
+$extended-header-breakpoint-down: xlarge down;
+$iconPlus: "icons/icon-plus.svg";
+$iconMinus: "icons/icon-minus.svg";
+
+$spacing-mulitpliers: (
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  8,
+  10,
+  12,
+  14,
+  16,
+  20,
+  24,
+  32,
+  40,
+  48,
+  56,
+  64
+);
+$max-inner-width: $global-width - map_get($grid-outer-margin, large) * 2;

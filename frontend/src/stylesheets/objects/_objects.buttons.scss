@@ -1,0 +1,71 @@
+button {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@each $size in $breakpoint-classes-map {
+  @include breakpoint($size) {
+    .#{size-prefix($size)}btn {
+      @include btn();
+      @each $suffix, $buttonConfig in $buttonTexts {
+        &-#{$suffix} {
+          @include btn-text($suffix);
+          @include btn($suffix);
+        }
+      }
+    }
+  }
+}
+
+
+
+.btn.btn--success {
+  @include btn--success;
+}
+
+.text-button {
+  @include text-button;
+}
+
+button.text-button {
+  @include reset-appearance;
+  @include btn-text;
+  outline: none;
+  transition: $easeTransition;
+  user-select: none;
+}
+
+@each $size in $breakpoint-classes-map {
+  @include breakpoint($size) {
+    .#{size-prefix($size)}text-button {
+      @each $suffix, $buttonConfig in $buttonTexts {
+        &-#{$suffix} {
+          @include btn-text($suffix);
+        }
+      }
+    }
+  }
+}
+
+.link {
+  @include link;
+}
+
+button.link {
+  @include reset-appearance;
+  @include link;
+  outline: none;
+  transition: $easeTransition;
+  user-select: none;
+}
+
+@each $size in $breakpoint-classes-map {
+  @include breakpoint($size) {
+    @each $suffix, $font-size, $line-height in $links {
+      .#{size-prefix($size)}link-#{$suffix} {
+        @include link($suffix);
+      }
+    }
+  }
+}

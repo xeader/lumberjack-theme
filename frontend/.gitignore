@@ -1,0 +1,17 @@
+.DS_Store
+.sass-cache
+.publish
+public
+Desktop.ini
+node_modules
+**/generated/_icons.sass
+npm-debug.log
+/public
+/hint-report
+
+/vendor/
+
+.yarn/
+.yarnrc
+yarn-error.log
+package-lock.json

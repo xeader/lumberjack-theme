@@ -1,0 +1,14 @@
+@import "settings.typography";
+
+$form-font-family: $base-font-family;
+
+$legend-font-size: inherit;
+$fieldset-color-border: currentColor;
+$fieldset-padding: 1.5rem !default;
+
+$legend-color: currentColor;
+$legend-color-bg: transparent;
+$legend-padding: 0.25rem 1rem !default;
+
+$label-padding: 0.25rem 0 !default;
+$label-color: inherit;

@@ -1,0 +1,36 @@
+$page-transition-duration: 1s;
+$layout-transition-duration: #{$page-transition-duration * 2};
+:root {
+  --page-transition-duration: #{$page-transition-duration};
+  --layout-transition-duration: #{$layout-transition-duration};
+  --page-transition-brightness: 1;
+  --transition-properties: opacity, filter, transform;
+  --transition-timing-function: cubic-bezier(0.42, 0.74, 0, 1);
+}
+
+.page-enter-active,
+.layout-enter-active {
+  transition-property: var(--transition-properties);
+  transition-timing-function: var(--transition-timing-function);
+}
+
+.page-enter-active {
+  transition-duration: var(--page-transition-duration);
+}
+
+.layout-enter-active {
+  transition-duration: var(--layout-transition-duration);
+}
+
+.page-enter,
+.layout-enter {
+  opacity: 0;
+  filter: brightness(var(--page-transition-brightness));
+}
+
+.page-leave-active,
+.layout-leave-active {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(-1em);
+}

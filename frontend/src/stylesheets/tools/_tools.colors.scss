@@ -1,0 +1,29 @@
+$color-properties: (
+  bg: background-color,
+  text: color
+);
+
+@mixin text-color($color) {
+  color: color($color);
+}
+
+@mixin bg-color($color) {
+  background-color: color($color);
+}
+
+@function color($color) {
+  @return map_get($colors, $color);
+}
+
+@each $propertyName, $property in $color-properties {
+  @each $colorName, $color in $colors {
+    .#{$propertyName}-#{$colorName} {
+      #{$property}: $color;
+    }
+  }
+}
+
+.text-invert {
+  color: $white;
+  filter: invert(1);
+}

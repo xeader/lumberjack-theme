@@ -1,0 +1,9 @@
+.app,
+#__nuxt,
+#__layout{
+  min-width: 100vw;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+}
