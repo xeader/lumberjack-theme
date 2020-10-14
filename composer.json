@@ -1,6 +1,7 @@
 {
     "name": "xeader/lumberjack-theme",
     "type": "wordpress-theme",
+    "version": "1.0.0",
     "description": "A Lumberjack theme using _s (underscores) xeader/itcss and xeader/blendid-plus",
     "keywords": [
         "Lumberjack",
